@@ -1,21 +1,22 @@
 package com.fwcorp.fwautogestao.entities;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,15 +24,17 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
-public abstract class Usuario implements Serializable, UserDetails{
+@NoArgsConstructor
+public abstract class Usuario implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
-	@OneToOne
 	@Id
-	private TokenRegistro token;
+	private Long token;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	private LocalDateTime dataRegistro = LocalDateTime.now();
+
 	@Column(nullable = false)
 	private String primeiroNome;
 
@@ -44,7 +47,7 @@ public abstract class Usuario implements Serializable, UserDetails{
 	@Column(nullable = false)
 	private String senha;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Cargo cargo;
 
 	@Override
@@ -80,6 +83,5 @@ public abstract class Usuario implements Serializable, UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}	
-
+	}
 }

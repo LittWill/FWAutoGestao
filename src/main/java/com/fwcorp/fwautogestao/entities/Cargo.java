@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Entity
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Cargo implements GrantedAuthority {
 
@@ -32,4 +32,9 @@ public class Cargo implements GrantedAuthority {
 	public String getAuthority() {
 		return this.nome;
 	}
+
+	public Cargo(String nome) {
+		this.nome = nome;
+	}
+
 }

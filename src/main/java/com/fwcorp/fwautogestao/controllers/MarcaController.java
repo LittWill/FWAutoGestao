@@ -3,8 +3,6 @@ package com.fwcorp.fwautogestao.controllers;
 import java.net.URI;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +21,7 @@ import com.fwcorp.fwautogestao.entities.Marca;
 import com.fwcorp.fwautogestao.services.MarcaService;
 
 @RestController
-@RequestMapping("/marcas")
+@RequestMapping("marcas")
 public class MarcaController {
 	
 	private final MarcaService marcaService;

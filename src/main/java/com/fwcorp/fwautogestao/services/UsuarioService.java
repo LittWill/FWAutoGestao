@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
 import com.fwcorp.fwautogestao.entities.Usuario;
+import com.fwcorp.fwautogestao.enums.Cargos;
 import com.fwcorp.fwautogestao.repositories.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,17 +21,18 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
-	public Usuario obterUsuario(TokenRegistro tokenRegistro) {
-		return usuarioRepository.findById(tokenRegistro.getNumero()).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+	public Usuario obterUsuario(Long token) {
+		return usuarioRepository.findById(token).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 	}
 	
 	public Page <Usuario> listarUsuarios(Pageable pageable){
 		return usuarioRepository.findAll(pageable);
 	}
 	
-	public void excluirUsuario(TokenRegistro tokenRegistro) {
-		Usuario usuarioObtido = this.obterUsuario(tokenRegistro);
+	public void excluirUsuario(Long token) {
+		Usuario usuarioObtido = this.obterUsuario(token);
 		usuarioRepository.delete(usuarioObtido);
 	}
+	
 
 }
