@@ -3,6 +3,7 @@ package com.fwcorp.fwautogestao.services;
 import java.awt.image.BufferedImage;
 import java.net.URI;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fwcorp.fwautogestao.entities.Marca;
 import com.fwcorp.fwautogestao.repositories.MarcaRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class MarcaService {
 
@@ -27,12 +31,6 @@ public class MarcaService {
 	@Value("${img.profile.marca.size}")
 	private Integer imageLogoSize;
 
-	public MarcaService(MarcaRepository marcaRepository,
-			ImageService imageService, S3Service s3Service) {
-		this.marcaRepository = marcaRepository;
-		this.imageService = imageService;
-		this.s3Service = s3Service;
-	}
 
 	public Marca salvarMarca(Marca marca) {
 		return marcaRepository.save(marca);
@@ -69,5 +67,6 @@ public class MarcaService {
 	public void excluirMarca(Long marcaId) {
 		marcaRepository.delete(this.obterMarca(marcaId));
 	}
+	
 
 }
