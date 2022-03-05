@@ -21,7 +21,6 @@ import com.fwcorp.fwautogestao.dto.consulta.ConsultaMarcaDTO;
 import com.fwcorp.fwautogestao.dto.registro.RegistroMarcaDTO;
 import com.fwcorp.fwautogestao.entities.Marca;
 import com.fwcorp.fwautogestao.services.MarcaService;
-import com.fwcorp.fwautogestao.util.ModelMapperUtil;
 
 @RestController
 @RequestMapping("/marcas")

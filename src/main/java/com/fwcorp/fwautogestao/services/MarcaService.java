@@ -3,7 +3,6 @@ package com.fwcorp.fwautogestao.services;
 import java.awt.image.BufferedImage;
 import java.net.URI;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
