@@ -1,5 +1,7 @@
 package com.fwcorp.fwautogestao.services;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
@@ -10,16 +12,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class TokenRegistroService {
-	
+
 	private final TokenRegistroRepository tokenRegistroRepository;
-	
+
 	public TokenRegistro salvarToken(TokenRegistro tokenRegistro) {
 		return tokenRegistroRepository.save(tokenRegistro);
 	}
-	
-	public TokenRegistro buscarToken(Long tokenRegistro) {
-		return tokenRegistroRepository.findById(tokenRegistro).orElseThrow(() -> new RuntimeException("Token não encontrado!"));
-	}
 
+	public TokenRegistro buscarToken(Long token) {
+		Optional<TokenRegistro> opt_tokenRegistro = tokenRegistroRepository
+				.findById(token);
+		if (opt_tokenRegistro.isPresent()) {
+			TokenRegistro tokenRegistro = opt_tokenRegistro.get();
+			if (!tokenRegistro.isTokenUtilizado()) {
+				return tokenRegistro;
+			}
+		}
+		throw new RuntimeException("Token não encontrado!");
+
+	}
 
 }

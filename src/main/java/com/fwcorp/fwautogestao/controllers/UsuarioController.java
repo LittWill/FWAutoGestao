@@ -36,8 +36,10 @@ public class UsuarioController {
 	@PostMapping("novo")
 	public ResponseEntity<?> cadastrarUsuario(
 			@RequestBody RegistroUsuarioDTO dto) {
+		
 		TokenRegistro tokenBuscado = tokenService
 				.buscarToken(dto.getTokenRegistro());
+		
 		var usuario = tokenBuscado.getCargo().getInstancia();
 		
 		usuario.setToken(tokenBuscado.getNumero());
@@ -46,7 +48,10 @@ public class UsuarioController {
 		usuario.setEmail(dto.getEmail());
 		usuario.setSenha(dto.getSenha());
 		
+		
 		usuarioService.salvarUsuario(usuario);
+		tokenBuscado.setTokenUtilizado(true);
+		tokenService.salvarToken(tokenBuscado);
 		
 		return ResponseEntity.ok("Usuário salvo!");
 	}
