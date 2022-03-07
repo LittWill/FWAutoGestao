@@ -2,6 +2,7 @@ package com.fwcorp.fwautogestao.controllers;
 
 import org.joda.time.LocalDateTime;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,11 +43,12 @@ public class UsuarioController {
 		
 		var usuario = tokenBuscado.getCargo().getInstancia();
 		
-		usuario.setToken(tokenBuscado.getNumero());
+		usuario.setId(tokenBuscado.getNumero());
 		usuario.setPrimeiroNome(dto.getPrimeiroNome());
 		usuario.setUltimoNome(dto.getUltimoNome());
 		usuario.setEmail(dto.getEmail());
-		usuario.setSenha(dto.getSenha());
+		usuario.setSenha(new BCryptPasswordEncoder().encode(dto.getSenha()));
+		usuario.setUrlImagem("imagem.jpg");
 		
 		
 		usuarioService.salvarUsuario(usuario);

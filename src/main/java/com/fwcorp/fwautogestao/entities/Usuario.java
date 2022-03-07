@@ -30,7 +30,7 @@ public abstract class Usuario implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Long token;
+	private Long id;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime dataRegistro = LocalDateTime.now();
@@ -40,6 +40,9 @@ public abstract class Usuario implements UserDetails{
 
 	@Column(nullable = false)
 	private String ultimoNome;
+	
+	@Column(nullable = false)
+	private String urlImagem;
 	
 	@Column(nullable = false, unique = true)
 	private String email;
