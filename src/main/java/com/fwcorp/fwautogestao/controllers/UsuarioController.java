@@ -1,7 +1,6 @@
 package com.fwcorp.fwautogestao.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fwcorp.fwautogestao.dto.registro.RegistroUsuarioDTO;
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
-import com.fwcorp.fwautogestao.enums.Cargos;
 import com.fwcorp.fwautogestao.services.TokenRegistroService;
 import com.fwcorp.fwautogestao.services.UsuarioService;
 

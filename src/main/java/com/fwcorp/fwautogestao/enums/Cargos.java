@@ -1,6 +1,5 @@
 package com.fwcorp.fwautogestao.enums;
 
-import com.fwcorp.fwautogestao.entities.Cargo;
 import com.fwcorp.fwautogestao.entities.Gestor;
 import com.fwcorp.fwautogestao.entities.Operador;
 import com.fwcorp.fwautogestao.entities.Usuario;

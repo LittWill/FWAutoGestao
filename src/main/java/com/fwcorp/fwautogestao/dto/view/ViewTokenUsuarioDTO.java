@@ -1,6 +1,5 @@
 package com.fwcorp.fwautogestao.dto.view;
 
-import com.fwcorp.fwautogestao.dto.TokenDTO;
 import com.fwcorp.fwautogestao.entities.Usuario;
 
 import lombok.Getter;

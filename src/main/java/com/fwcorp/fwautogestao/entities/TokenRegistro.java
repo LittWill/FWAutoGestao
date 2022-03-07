@@ -10,9 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fwcorp.fwautogestao.enums.Cargos;
 import com.fwcorp.fwautogestao.services.SecurityInfo;
-import com.fwcorp.fwautogestao.services.UsuarioService;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
