@@ -8,6 +8,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ public class Cargo implements GrantedAuthority {
 	@Id
 	private String nome;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "cargo")
 	private List<Usuario> usuarios;
 

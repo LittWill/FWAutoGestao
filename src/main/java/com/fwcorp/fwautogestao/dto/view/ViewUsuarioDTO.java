@@ -19,6 +19,6 @@ public class ViewUsuarioDTO {
 	
 	private String email;
 
-	private CargoDTO cargoNome;
+	private String cargo;
 
 }

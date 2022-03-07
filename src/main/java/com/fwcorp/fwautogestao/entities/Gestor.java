@@ -9,9 +9,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Gestor extends Usuario {
 	
-/*	@OneToMany(mappedBy = "quemGerou")
+	@OneToMany(mappedBy = "quemGerou")
 	private List <TokenRegistro> tokensGerados;
-*/
+
 	private static final long serialVersionUID = 1L;
 
 	public Gestor () {

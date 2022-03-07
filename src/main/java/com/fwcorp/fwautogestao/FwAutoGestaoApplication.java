@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fwcorp.fwautogestao.entities.Administrador;
 import com.fwcorp.fwautogestao.entities.Cargo;
 import com.fwcorp.fwautogestao.entities.Operador;
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
@@ -35,12 +36,12 @@ public class FwAutoGestaoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		cargoRepository.saveAll(List.of(new Cargo("GESTOR"), new Cargo("OPERADOR")));
-		TokenRegistro token1 = new TokenRegistro(Cargos.OPERADOR);
-		TokenRegistro token2 = new TokenRegistro(Cargos.GESTOR);
+		cargoRepository.saveAll(List.of(new Cargo("ADMIN"), new Cargo("GESTOR"), new Cargo("OPERADOR")));
+		
+		/*TokenRegistro token2 = new TokenRegistro(Cargos.GESTOR);
 		token1.setNumero(Long.valueOf(16000000));
 		token2.setNumero(Long.valueOf(16000001));
-		tokenRepository.save(token1);
+		
 		tokenRepository.save(token2);
 		
 		Usuario operador = token1.getCargo().getInstancia();
@@ -68,6 +69,9 @@ public class FwAutoGestaoApplication implements CommandLineRunner{
 		usuarioRepository.save(gestor);
 		token2.setTokenUtilizado(true);
 		tokenRepository.save(token2);
+		*/
+
+
 	}
 
 }

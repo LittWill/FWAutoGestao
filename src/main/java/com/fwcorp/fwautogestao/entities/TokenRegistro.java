@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fwcorp.fwautogestao.enums.Cargos;
+import com.fwcorp.fwautogestao.services.SecurityInfo;
+import com.fwcorp.fwautogestao.services.UsuarioService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,15 +32,16 @@ public class TokenRegistro {
 	
 	private Cargos cargo;
 	
-	/*@ManyToOne
+	@JsonIgnore
+	@ManyToOne
 	private Usuario quemGerou;
-	*/
 
 	public TokenRegistro(Cargos cargo) {
 		this.numero = System.currentTimeMillis() / 100;
 		this.isTokenUtilizado = false;
 		this.dataGeracao = LocalDateTime.now();
 		this.cargo = cargo;
+		this.quemGerou = SecurityInfo.obterUsuarioLogado();
 	}
 	
 	

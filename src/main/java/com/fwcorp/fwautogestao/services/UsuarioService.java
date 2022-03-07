@@ -2,6 +2,7 @@ package com.fwcorp.fwautogestao.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -42,6 +43,7 @@ public class UsuarioService implements UserDetailsService{
 			throws UsernameNotFoundException {
 		return usuarioRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 	}
+	
 	
 
 }
