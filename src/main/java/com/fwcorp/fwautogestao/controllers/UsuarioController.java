@@ -2,6 +2,7 @@ package com.fwcorp.fwautogestao.controllers;
 
 import org.joda.time.LocalDateTime;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ public class UsuarioController {
 
 	private final TokenRegistroService tokenService;
 
+	@PreAuthorize("hasAuthority('GESTOR')")
 	@PostMapping
 	public ResponseEntity<?> gerarTokenDeRegistro(
 			@RequestBody RegistroTokenDTO dto) {

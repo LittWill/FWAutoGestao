@@ -35,7 +35,7 @@ public class SpringFoxConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfo("REST API by Wilson Almeida", "Uma parceria FWCorp",
+		return new ApiInfo("FW Auto Gestão API", "by Wilson Almeida",
 				"alfa", "Terms of service",
 				new Contact("FW Corp", "www.fw.corp", "corp@fw.com"),
 				"License of API", "API license URL", Collections.emptyList());

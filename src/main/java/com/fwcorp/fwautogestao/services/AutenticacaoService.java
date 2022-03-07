@@ -18,7 +18,6 @@ import com.fwcorp.fwautogestao.dto.TokenDTO;
 import com.fwcorp.fwautogestao.dto.view.ViewTokenUsuarioDTO;
 import com.fwcorp.fwautogestao.entities.Usuario;
 
-
 @Service
 public class AutenticacaoService {
 
@@ -42,7 +41,8 @@ public class AutenticacaoService {
 
 		String token = gerarToken(authenticate);
 
-		return new ViewTokenUsuarioDTO((Usuario) authenticate.getPrincipal(), new TokenDTO(token).getToken());
+		return new ViewTokenUsuarioDTO((Usuario) authenticate.getPrincipal(),
+				new TokenDTO(token).getToken());
 	}
 
 	private Algorithm criarAlgoritmo() {
