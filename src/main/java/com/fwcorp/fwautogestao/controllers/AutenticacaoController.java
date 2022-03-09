@@ -1,5 +1,7 @@
 package com.fwcorp.fwautogestao.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fwcorp.fwautogestao.dto.AutenticacaoDTO;
+import com.fwcorp.fwautogestao.entities.RespostaServidor;
 import com.fwcorp.fwautogestao.services.AutenticacaoService;
+import com.fwcorp.fwautogestao.util.BindingResultUtils;
+import com.fwcorp.fwautogestao.util.GeradorRespostaServidor;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,13 +33,19 @@ public class AutenticacaoController {
 
 	@ApiOperation(value = "Faz o login no sistema. Espera um email e uma senha", tags = "Acesso Livre")
 	@PostMapping
-	public ResponseEntity<?> autenticar(@Valid @RequestBody AutenticacaoDTO dto,
+	public ResponseEntity<RespostaServidor> autenticar(@Valid @RequestBody AutenticacaoDTO dto,
 			BindingResult bindingResult) {
 		
+		List<String> errosDosCampos = BindingResultUtils.extrairErrosDosCampos(bindingResult);
+		
+		if (!errosDosCampos.isEmpty()) {
+			return GeradorRespostaServidor.gerarRespostaServidorStatusBadRequest(errosDosCampos, "Não foi possível fazer o login!");
+		}
+		
 		try {
-			return ResponseEntity.ok(autenticacaoService.autenticar(dto));
+			return GeradorRespostaServidor.gerarRespostaServidorStatusOk(autenticacaoService.autenticar(dto));
 		} catch (AuthenticationException ae) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senha inválidos!");
+			return GeradorRespostaServidor.gerarRespostaServidor(HttpStatus.UNAUTHORIZED, "Login ou senha inválidos!");
 		}
 	}
 

@@ -2,15 +2,12 @@ package com.fwcorp.fwautogestao.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.fwcorp.fwautogestao.entities.TokenRegistro;
 import com.fwcorp.fwautogestao.entities.Usuario;
-import com.fwcorp.fwautogestao.enums.Cargos;
 import com.fwcorp.fwautogestao.repositories.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
