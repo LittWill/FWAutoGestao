@@ -1,19 +1,16 @@
 package com.fwcorp.fwautogestao.dto.registro;
 
-import com.fwcorp.fwautogestao.enums.Cargos;
+import com.fwcorp.fwautogestao.entities.Cargo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class RegistroTokenDTO {
 	
-	private Cargos cargo;
-
-	public void setCargo(String cargo) {
-		this.cargo = Cargos.valueOf(cargo);
-	}
+	private Cargo cargo;
 
 }

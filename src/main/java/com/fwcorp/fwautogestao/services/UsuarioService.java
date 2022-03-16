@@ -22,7 +22,7 @@ public class UsuarioService implements UserDetailsService{
 		return usuarioRepository.save(usuario);
 	}
 	
-	public Usuario obterUsuario(Long token) {
+	public Usuario obterUsuario(String token) {
 		return usuarioRepository.findById(token).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 	}
 	
@@ -30,7 +30,7 @@ public class UsuarioService implements UserDetailsService{
 		return usuarioRepository.findAll(pageable);
 	}
 	
-	public void excluirUsuario(Long token) {
+	public void excluirUsuario(String token) {
 		Usuario usuarioObtido = this.obterUsuario(token);
 		usuarioRepository.delete(usuarioObtido);
 	}

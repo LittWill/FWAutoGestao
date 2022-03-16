@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
 
 @Repository
-public interface TokenRegistroRepository extends JpaRepository<TokenRegistro, Long>{
+public interface TokenRegistroRepository extends JpaRepository<TokenRegistro, String>{
 
 }

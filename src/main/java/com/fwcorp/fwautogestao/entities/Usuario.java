@@ -3,6 +3,7 @@ package com.fwcorp.fwautogestao.entities;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,11 +32,11 @@ public abstract class Usuario implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Long id;
+	private String id;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-	private LocalDateTime dataRegistro = LocalDateTime.now();
+	private LocalDateTime dataRegistro;
 
 	@Column(nullable = false)
 	private String primeiroNome;
@@ -53,6 +55,16 @@ public abstract class Usuario implements UserDetails{
 	
 	@ManyToOne(optional = false)
 	private Cargo cargo;
+	
+	public Usuario(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
+		this.id = tokenRegistro.getToken();
+		this.dataRegistro = LocalDateTime.now();
+		this.primeiroNome = primeiroNome;
+		this.ultimoNome = ultimoNome;
+		this.urlImagem = urlImagem;
+		this.email = email;
+		this.senha = new BCryptPasswordEncoder().encode(senha);
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -88,4 +100,6 @@ public abstract class Usuario implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
+	
 }

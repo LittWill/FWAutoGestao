@@ -43,7 +43,7 @@ public class FiltroAutenticacao extends OncePerRequestFilter {
 		}
 
 		if (autenticacaoService.verificaToken(token)) {
-			Long idUsuario = autenticacaoService.retornarIdUsuario(token);
+			String idUsuario = autenticacaoService.retornarIdUsuario(token);
 			Usuario usuario = usuarioService.obterUsuario(idUsuario);
 			SecurityContextHolder.getContext().setAuthentication(
 					new UsernamePasswordAuthenticationToken(usuario, null,

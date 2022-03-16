@@ -76,9 +76,9 @@ public class AutenticacaoService {
 
 	}
 
-	public Long retornarIdUsuario(String token) {
+	public String retornarIdUsuario(String token) {
 		String subject = JWT.require(this.criarAlgoritmo()).withIssuer(issuer)
 				.build().verify(token).getSubject();
-		return Long.parseLong(subject);
+		return subject;
 	}
 }

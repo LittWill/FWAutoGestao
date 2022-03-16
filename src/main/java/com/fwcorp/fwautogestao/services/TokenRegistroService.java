@@ -19,7 +19,7 @@ public class TokenRegistroService {
 		return tokenRegistroRepository.save(tokenRegistro);
 	}
 
-	public TokenRegistro buscarToken(Long token) {
+	public TokenRegistro buscarToken(String token) {
 		Optional<TokenRegistro> opt_tokenRegistro = tokenRegistroRepository
 				.findById(token);
 		if (opt_tokenRegistro.isPresent()) {

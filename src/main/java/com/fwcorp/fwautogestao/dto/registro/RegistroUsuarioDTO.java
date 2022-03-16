@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor @AllArgsConstructor
 public class RegistroUsuarioDTO {
 	
-	private Long tokenRegistro;
+	private String tokenRegistro;
 	
 	private String primeiroNome;
 
