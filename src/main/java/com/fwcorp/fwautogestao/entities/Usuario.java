@@ -32,6 +32,7 @@ public abstract class Usuario implements UserDetails{
 	@Id
 	private Long id;
 	
+	@Column(nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime dataRegistro = LocalDateTime.now();
 
@@ -50,7 +51,7 @@ public abstract class Usuario implements UserDetails{
 	@Column(nullable = false)
 	private String senha;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(optional = false)
 	private Cargo cargo;
 
 	@Override
