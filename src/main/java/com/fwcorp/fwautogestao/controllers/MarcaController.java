@@ -51,8 +51,7 @@ public class MarcaController {
 			Marca marca = MarcaMapper.fromDtoToEntity(registroMarcaDTOLocal);
 			Marca marcaSalva = marcaService.salvarMarca(marca);
 		
-			URI uri = marcaService.uploadMarcaPicture(imagem,
-					marcaSalva.getId());
+			URI uri = marcaService.uploadMarcaPicture(imagem);
 			
 			marcaSalva.setUrlImagem(uri.toString());
 			marcaService.salvarMarca(marcaSalva);

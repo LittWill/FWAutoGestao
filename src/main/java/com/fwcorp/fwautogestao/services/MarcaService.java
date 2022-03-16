@@ -2,6 +2,7 @@ package com.fwcorp.fwautogestao.services;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -35,12 +36,12 @@ public class MarcaService {
 		return marcaRepository.save(marca);
 	}
 	
-	public URI uploadMarcaPicture(MultipartFile multipartFile, Long marcaId) {
+	public URI uploadMarcaPicture(MultipartFile multipartFile) {
 
 		BufferedImage jpgImage = imageService
 				.getJpgImageFromFile(multipartFile);
 		jpgImage = imageService.resize(jpgImage, imageLogoSize);
-		String fileName = imagePrefix + marcaId + ".jpg";
+		String fileName = UUID.randomUUID().toString() + ".jpg";
 		URI uri = s3Service.uploadFile(
 				imageService.getInputStream(jpgImage, "jpg"), fileName,
 				"image");
