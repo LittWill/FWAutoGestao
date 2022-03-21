@@ -28,8 +28,13 @@ public class TokenRegistroService {
 				return tokenRegistro;
 			}
 		}
-		throw new RuntimeException("Token não encontrado!");
+		
+		return null;
 
+	}
+
+	public void excluirToken(TokenRegistro tokenRegistro) {
+		tokenRegistroRepository.delete(tokenRegistro);
 	}
 
 }

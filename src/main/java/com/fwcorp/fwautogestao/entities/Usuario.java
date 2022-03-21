@@ -32,7 +32,7 @@ public abstract class Usuario implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private String token;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
@@ -57,7 +57,7 @@ public abstract class Usuario implements UserDetails{
 	private Cargo cargo;
 	
 	public Usuario(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
-		this.id = tokenRegistro.getToken();
+		this.token = tokenRegistro.getToken();
 		this.dataRegistro = LocalDateTime.now();
 		this.primeiroNome = primeiroNome;
 		this.ultimoNome = ultimoNome;
