@@ -15,6 +15,12 @@ import javax.persistence.ManyToOne;
 @Setter
 @NoArgsConstructor
 public abstract class UsuarioGestorComum extends UsuarioGestor{
+
     @ManyToOne
     private TokenRegistro tokenRegistro;
+
+    public UsuarioGestorComum(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
+        super(primeiroNome, ultimoNome, urlImagem, email, senha);
+        this.tokenRegistro = tokenRegistro;
+    }
 }

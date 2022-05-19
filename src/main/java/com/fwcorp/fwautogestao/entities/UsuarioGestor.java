@@ -21,6 +21,10 @@ public abstract class UsuarioGestor extends Usuario{
     @OneToMany(mappedBy = "quemGerou")
     private List<TokenRegistro> tokensGerados;
 
+    public UsuarioGestor(String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
+        super(primeiroNome, ultimoNome, urlImagem, email, senha);
+    }
+
 
 
 

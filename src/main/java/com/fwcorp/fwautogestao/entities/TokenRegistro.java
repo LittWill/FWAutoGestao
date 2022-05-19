@@ -35,12 +35,12 @@ public class TokenRegistro {
 	@ManyToOne
 	private UsuarioGestor quemGerou;
 
-	public TokenRegistro(Cargo cargo) {
+	public TokenRegistro(UsuarioGestor quemGerou, Cargo cargo) {
 		this.token = UUID.randomUUID().toString();
 		this.isUtilizado = false;
 		this.dataGeracao = LocalDateTime.now();
 		this.tokenCargo = cargo;
-		this.quemGerou = (UsuarioGestor) SecurityInfo.obterUsuarioLogado();
+		this.quemGerou = quemGerou;
 	}
 	
 	

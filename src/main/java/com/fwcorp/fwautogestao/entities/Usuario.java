@@ -3,6 +3,7 @@ package com.fwcorp.fwautogestao.entities;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -52,8 +53,8 @@ public abstract class Usuario implements UserDetails{
 	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	protected Cargo cargo;
 
-	protected Usuario(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
-		this.id = tokenRegistro.getToken();
+	protected Usuario(String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
+		this.id = UUID.randomUUID().toString();
 		this.cargo = ExtratorDeCargo.extrairCargo(this);
 		this.dataRegistro = LocalDateTime.now();
 		this.primeiroNome = primeiroNome;
