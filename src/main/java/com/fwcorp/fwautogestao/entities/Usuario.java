@@ -3,16 +3,11 @@ package com.fwcorp.fwautogestao.entities;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import com.fwcorp.fwautogestao.util.ExtratorDeCargo;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,38 +21,40 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Getter @Setter
+@ToString
 @NoArgsConstructor
 public abstract class Usuario implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String token;
+	protected String id;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-	private LocalDateTime dataRegistro;
+	protected LocalDateTime dataRegistro;
 
 	@Column(nullable = false)
-	private String primeiroNome;
+	protected String primeiroNome;
 
 	@Column(nullable = false)
-	private String ultimoNome;
+	protected String ultimoNome;
 	
 	@Column(nullable = false)
-	private String urlImagem;
+	protected String urlImagem;
 	
 	@Column(nullable = false, unique = true)
-	private String email;
+	protected String email;
 	
 	@Column(nullable = false)
-	private String senha;
+	protected String senha;
 	
-	@ManyToOne(optional = false)
-	private Cargo cargo;
-	
-	public Usuario(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
-		this.token = tokenRegistro.getToken();
+	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	protected Cargo cargo;
+
+	protected Usuario(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
+		this.id = tokenRegistro.getToken();
+		this.cargo = ExtratorDeCargo.extrairCargo(this);
 		this.dataRegistro = LocalDateTime.now();
 		this.primeiroNome = primeiroNome;
 		this.ultimoNome = ultimoNome;

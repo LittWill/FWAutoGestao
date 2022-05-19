@@ -15,7 +15,7 @@ public class ViewTokenUsuarioDTO {
 	private String token;
 
 	public ViewTokenUsuarioDTO(Usuario usuario, String token) {
-		this.usuario = new ViewUsuarioDTO(usuario.getToken(),
+		this.usuario = new ViewUsuarioDTO(usuario.getId(),
 				usuario.getPrimeiroNome(), usuario.getUltimoNome(),
 				usuario.getUrlImagem(), usuario.getEmail(),
 				usuario.getCargo().getNome());

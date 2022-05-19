@@ -1,4 +1,4 @@
-package com.fwcorp.fwautogestao.entities;
+package com.fwcorp.fwautogestao.util;
 
 import java.util.ArrayList;
 import java.util.List;

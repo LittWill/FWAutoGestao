@@ -24,7 +24,7 @@ public class TokenRegistroService {
 				.findById(token);
 		if (opt_tokenRegistro.isPresent()) {
 			TokenRegistro tokenRegistro = opt_tokenRegistro.get();
-			if (!tokenRegistro.isTokenUtilizado()) {
+			if (!tokenRegistro.isUtilizado()) {
 				return tokenRegistro;
 			}
 		}

@@ -26,21 +26,21 @@ public class TokenRegistro {
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime dataGeracao;
 	
-	private boolean isTokenUtilizado;
+	private boolean isUtilizado;
 	
 	@ManyToOne
-	private Cargo cargo;
+	private Cargo tokenCargo;
 	
 	@JsonIgnore
 	@ManyToOne
-	private Usuario quemGerou;
+	private UsuarioGestor quemGerou;
 
 	public TokenRegistro(Cargo cargo) {
 		this.token = UUID.randomUUID().toString();
-		this.isTokenUtilizado = false;
+		this.isUtilizado = false;
 		this.dataGeracao = LocalDateTime.now();
-		this.cargo = cargo;
-		this.quemGerou = SecurityInfo.obterUsuarioLogado();
+		this.tokenCargo = cargo;
+		this.quemGerou = (UsuarioGestor) SecurityInfo.obterUsuarioLogado();
 	}
 	
 	

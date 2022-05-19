@@ -28,6 +28,7 @@ public class Cargo implements GrantedAuthority {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "cargo")
+	@ToString.Exclude
 	private List<Usuario> usuarios;
 
 	@Override

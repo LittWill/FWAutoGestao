@@ -42,14 +42,14 @@ public class Marca {
 	private LocalDateTime dataCriacao;
 	
 	@ManyToOne(optional = false)
-	private Operador quemCriou;
+	private Maintainer quemCriou;
 	
 	public Marca (String nome, String urlImagem) {
 		this.id = UUID.randomUUID().toString();
 		this.nome = nome;
 		this.urlImagem = urlImagem;
 		this.dataCriacao = LocalDateTime.now();
-		this.quemCriou = (Operador) SecurityInfo.obterUsuarioLogado();
+		this.quemCriou = (Maintainer) SecurityInfo.obterUsuarioLogado();
 	}
 
 	

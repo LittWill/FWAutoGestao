@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.fwcorp.fwautogestao.entities.RespostaServidor;
-
 public class GeradorRespostaServidor {
 	
 	public static ResponseEntity<RespostaServidor> gerarRespostaServidorStatusOk(Object resposta) {

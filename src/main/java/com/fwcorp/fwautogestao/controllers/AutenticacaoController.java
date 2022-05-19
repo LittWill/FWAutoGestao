@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fwcorp.fwautogestao.dto.AutenticacaoDTO;
-import com.fwcorp.fwautogestao.entities.RespostaServidor;
+import com.fwcorp.fwautogestao.util.RespostaServidor;
 import com.fwcorp.fwautogestao.services.AutenticacaoService;
 import com.fwcorp.fwautogestao.util.BindingResultUtils;
 import com.fwcorp.fwautogestao.util.GeradorRespostaServidor;
