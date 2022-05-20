@@ -2,6 +2,7 @@ package com.fwcorp.fwautogestao.services;
 
 import java.util.Optional;
 
+import com.fwcorp.fwautogestao.enums.Cargos;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -40,10 +41,10 @@ public class TokenRegistroService {
 	}
 
 	public Page<TokenRegistro> listarTokensGestorMaintainer(Pageable pageable){
-		return tokenRegistroRepository.findByTokenCargoNome(pageable, "GestorMaintainer");
+		return tokenRegistroRepository.findByTokenCargoNome(pageable, Cargos.GESTORMAINTAINER.getNomeCargo());
 	}
 
 	public Page<TokenRegistro> listarTokensMaintainers(Pageable pageable){
-		return tokenRegistroRepository.findByTokenCargoNome(pageable, "Maintainer");
+		return tokenRegistroRepository.findByTokenCargoNome(pageable, Cargos.MAINTAINER.getNomeCargo());
 	}
 }

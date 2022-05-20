@@ -19,7 +19,7 @@ public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
 
     public Usuario salvarUsuario(Usuario usuario) {
-		return usuarioRepository.save(usuario);
+		return usuarioRepository.saveAndFlush(usuario);
     }
 
     public Usuario obterUsuario(String id) {

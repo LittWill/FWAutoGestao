@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public abstract class UsuarioComum extends Usuario{
 
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.REFRESH)
    private TokenRegistro tokenRegistro;
 
    public UsuarioComum(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){

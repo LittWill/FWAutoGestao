@@ -4,17 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 public abstract class UsuarioGestorComum extends UsuarioGestor{
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private TokenRegistro tokenRegistro;
 
     public UsuarioGestorComum(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){

@@ -4,6 +4,7 @@ import com.fwcorp.fwautogestao.entities.GestorMaintainer;
 import com.fwcorp.fwautogestao.entities.Maintainer;
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
 import com.fwcorp.fwautogestao.entities.UsuarioGestor;
+import com.fwcorp.fwautogestao.enums.Cargos;
 import com.fwcorp.fwautogestao.services.CargoService;
 import com.fwcorp.fwautogestao.services.SecurityInfo;
 import com.fwcorp.fwautogestao.services.TokenRegistroService;
@@ -32,14 +33,14 @@ public class TokenController {
 
     @PostMapping("/gerar/gestormaintainer")
     public ResponseEntity<RespostaServidor> gerarTokenParaGestorMaintainer() {
-        TokenRegistro tokenParaGestorMaintainer = new TokenRegistro((UsuarioGestor) SecurityInfo.obterUsuarioLogado(), cargoService.obterCargo("GestorMaintainer"));
+        TokenRegistro tokenParaGestorMaintainer = new TokenRegistro((UsuarioGestor) SecurityInfo.obterUsuarioLogado(), cargoService.obterCargo(Cargos.GESTORMAINTAINER.getNomeCargo()));
         tokenParaGestorMaintainer = tokenRegistroService.salvarToken(tokenParaGestorMaintainer);
         return GeradorRespostaServidor.gerarRespostaServidorStatusOk(tokenParaGestorMaintainer.getToken());
     }
 
     @PostMapping("/gerar/maintainer")
     public ResponseEntity<RespostaServidor> gerarTokenParaMaintainer() {
-        TokenRegistro tokenParaMaintainer = new TokenRegistro((UsuarioGestor) SecurityInfo.obterUsuarioLogado(), cargoService.obterCargo("Maintainer"));
+        TokenRegistro tokenParaMaintainer = new TokenRegistro((UsuarioGestor) SecurityInfo.obterUsuarioLogado(), cargoService.obterCargo(Cargos.MAINTAINER.getNomeCargo()));
         tokenParaMaintainer = tokenRegistroService.salvarToken(tokenParaMaintainer);
         return GeradorRespostaServidor.gerarRespostaServidorStatusOk(tokenParaMaintainer.getToken());
     }
