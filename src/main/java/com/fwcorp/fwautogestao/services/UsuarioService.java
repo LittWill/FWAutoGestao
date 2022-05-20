@@ -42,5 +42,4 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
     }
 
-
 }

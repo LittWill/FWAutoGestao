@@ -2,6 +2,8 @@ package com.fwcorp.fwautogestao.services;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fwcorp.fwautogestao.entities.TokenRegistro;
@@ -37,4 +39,11 @@ public class TokenRegistroService {
 		tokenRegistroRepository.delete(tokenRegistro);
 	}
 
+	public Page<TokenRegistro> listarTokensGestorMaintainer(Pageable pageable){
+		return tokenRegistroRepository.findByTokenCargoNome(pageable, "GestorMaintainer");
+	}
+
+	public Page<TokenRegistro> listarTokensMaintainers(Pageable pageable){
+		return tokenRegistroRepository.findByTokenCargoNome(pageable, "Maintainer");
+	}
 }
