@@ -14,4 +14,6 @@ public class Administrador extends UsuarioGestor {
 		super(primeiroNome, ultimoNome, urlImagem, email, senha);
 	}
 
+
+
 }
