@@ -18,9 +18,9 @@ import com.fwcorp.fwautogestao.services.UsuarioService;
 
 public class FiltroAutenticacao extends OncePerRequestFilter {
 
-	private AutenticacaoService autenticacaoService;
+	private final AutenticacaoService autenticacaoService;
 
-	private UsuarioService usuarioService;
+	private final UsuarioService usuarioService;
 
 	public FiltroAutenticacao(AutenticacaoService autenticacaoService,
 			UsuarioService usuarioService) {
@@ -36,11 +36,13 @@ public class FiltroAutenticacao extends OncePerRequestFilter {
 		String token = null;
 
 		if (header != null && header.startsWith("Bearer ")) {
-			token = header.substring(7, header.length());
+			token = header.substring(7);
 		}
 		else if (header != null) {
 			token = header;
 		}
+
+		System.out.println(token);
 
 		if (autenticacaoService.verificaToken(token)) {
 			String idUsuario = autenticacaoService.retornarIdUsuario(token);

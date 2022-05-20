@@ -11,10 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 public abstract class UsuarioGestor extends Usuario{
 

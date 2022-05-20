@@ -13,6 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class FwAutoGestaoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		Administrador administrador = new Administrador("Wilson", "Almeida", "image.jpeg", "wilsonfmz14@gmail.com", "1234");
+		/*Administrador administrador = new Administrador("Wilson", "Almeida", "image.jpeg", "wilsonfmz14@gmail.com", "1234");
 		System.out.println(administrador);
 		usuarioRepository.save(administrador);
 
@@ -48,8 +49,10 @@ public class FwAutoGestaoApplication implements CommandLineRunner{
 		TokenRegistro tokenRegistro = tokenRegistroRepository.save(new TokenRegistro(administrador, new Cargo("Maintainer")));
 		;
 
-		Maintainer maintainer = new Maintainer(tokenRegistro, "Wiliam", "Almeida", "image.jpeg", "wilsonfmz14@gmail.com", "1234");
+		Maintainer maintainer = new Maintainer(tokenRegistro, "Wiliam", "Almeida", "image.jpeg", "wiliamfmz14@gmail.com", "1234");
 		usuarioRepository.save(maintainer);
+
+		 */
 	}
 
 }

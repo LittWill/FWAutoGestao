@@ -56,7 +56,7 @@ public class AutenticacaoService {
 				hoje.getTime() + Long.parseLong(expiration));
 
 		return JWT.create().withIssuer(issuer).withExpiresAt(dataExpiracao)
-				.withSubject(principal.getId().toString())
+				.withSubject(principal.getId())
 				.sign(this.criarAlgoritmo());
 
 	}

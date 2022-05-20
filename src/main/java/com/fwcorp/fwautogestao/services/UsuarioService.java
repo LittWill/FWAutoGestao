@@ -14,33 +14,33 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class UsuarioService implements UserDetailsService{
-	
-	private final UsuarioRepository usuarioRepository;
-	
-	public Usuario salvarUsuario(Usuario usuario) {
-		return usuarioRepository.save(usuario);
-	}
-	
-	public Usuario obterUsuario(String token) {
-		return usuarioRepository.findById(token).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
-	}
-	
-	public Page <Usuario> listarUsuarios(Pageable pageable){
-		return usuarioRepository.findAll(pageable);
-	}
-	
-	public void excluirUsuario(String token) {
-		Usuario usuarioObtido = this.obterUsuario(token);
-		usuarioRepository.delete(usuarioObtido);
-	}
+public class UsuarioService implements UserDetailsService {
 
-	@Override
-	public UserDetails loadUserByUsername(String email)
-			throws UsernameNotFoundException {
-		return usuarioRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
-	}
-	
-	
+    private final UsuarioRepository usuarioRepository;
+
+    public Usuario salvarUsuario(Usuario usuario) {
+		return usuarioRepository.save(usuario);
+    }
+
+    public Usuario obterUsuario(String id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+    }
+
+    public Page<Usuario> listarUsuarios(Pageable pageable) {
+        return usuarioRepository.findAll(pageable);
+    }
+
+    public void excluirUsuario(String id) {
+        Usuario usuarioObtido = this.obterUsuario(id);
+        usuarioRepository.delete(usuarioObtido);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email)
+            throws UsernameNotFoundException {
+        System.out.println(usuarioRepository.findByEmail(email));
+        return usuarioRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+    }
+
 
 }

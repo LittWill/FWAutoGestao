@@ -1,16 +1,14 @@
 package com.fwcorp.fwautogestao.entities;
 
-import antlr.Token;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 public abstract class UsuarioComum extends Usuario{
 
