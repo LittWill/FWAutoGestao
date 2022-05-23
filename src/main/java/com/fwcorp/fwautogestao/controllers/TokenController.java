@@ -10,6 +10,7 @@ import com.fwcorp.fwautogestao.services.SecurityInfo;
 import com.fwcorp.fwautogestao.services.TokenRegistroService;
 import com.fwcorp.fwautogestao.util.GeradorRespostaServidor;
 import com.fwcorp.fwautogestao.util.RespostaServidor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("tokens")
 public class TokenController {
@@ -25,11 +27,6 @@ public class TokenController {
     private final TokenRegistroService tokenRegistroService;
 
     private final CargoService cargoService;
-
-    public TokenController(TokenRegistroService tokenRegistroService, CargoService cargoService) {
-        this.tokenRegistroService = tokenRegistroService;
-        this.cargoService = cargoService;
-    }
 
     @PostMapping("/gerar/gestormaintainer")
     public ResponseEntity<RespostaServidor> gerarTokenParaGestorMaintainer() {

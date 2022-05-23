@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,13 @@ import com.fwcorp.fwautogestao.util.GeradorRespostaServidor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("auth")
 @Api(tags = "Autenticação")
 public class AutenticacaoController {
 
-	@Autowired
-	private AutenticacaoService autenticacaoService;
+	private final AutenticacaoService autenticacaoService;
 
 	@ApiOperation(value = "Faz o login no sistema. Espera um email e uma senha", tags = "Acesso Livre")
 	@PostMapping

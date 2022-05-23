@@ -3,6 +3,7 @@ package com.fwcorp.fwautogestao.controllers;
 import java.net.URI;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import com.fwcorp.fwautogestao.dto.registro.RegistroMarcaDTO;
 import com.fwcorp.fwautogestao.entities.Marca;
 import com.fwcorp.fwautogestao.services.MarcaService;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("marcas")
 public class MarcaController {
@@ -27,10 +29,6 @@ public class MarcaController {
 	private final MarcaService marcaService;
 	
 	private RegistroMarcaDTO registroMarcaDTOLocal;
-
-	public MarcaController(MarcaService marcaService) {
-		this.marcaService = marcaService;
-	}
 	
 	@PostMapping
 	public ResponseEntity<String> salvarMarca(@RequestBody RegistroMarcaDTO dto){
