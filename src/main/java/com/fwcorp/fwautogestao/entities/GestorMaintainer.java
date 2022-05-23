@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class GestorMaintainer extends UsuarioGestorComum{
 
-    public GestorMaintainer (TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
-        super(tokenRegistro, primeiroNome, ultimoNome, urlImagem, email, senha);
+    public GestorMaintainer (TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String senha){
+        super(tokenRegistro, primeiroNome, ultimoNome, urlImagem, senha);
     }
 }

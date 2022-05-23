@@ -16,8 +16,8 @@ public abstract class UsuarioComum extends Usuario{
    @ManyToOne(cascade = CascadeType.REFRESH)
    private TokenRegistro tokenRegistro;
 
-   public UsuarioComum(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
-      super(primeiroNome, ultimoNome, urlImagem, email, senha);
+   public UsuarioComum(TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String senha){
+      super(primeiroNome, ultimoNome, urlImagem, senha);
       this.tokenRegistro = tokenRegistro;
    }
 

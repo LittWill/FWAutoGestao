@@ -53,14 +53,13 @@ public abstract class Usuario implements UserDetails{
 	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	protected Cargo cargo;
 
-	protected Usuario(String primeiroNome, String ultimoNome, String urlImagem, String email, String senha) {
+	protected Usuario(String primeiroNome, String ultimoNome, String urlImagem, String senha) {
 		this.id = UUID.randomUUID().toString();
 		this.cargo = ExtratorDeCargo.extrairCargo(this);
 		this.dataRegistro = LocalDateTime.now();
 		this.primeiroNome = primeiroNome;
 		this.ultimoNome = ultimoNome;
 		this.urlImagem = urlImagem;
-		this.email = email;
 		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 

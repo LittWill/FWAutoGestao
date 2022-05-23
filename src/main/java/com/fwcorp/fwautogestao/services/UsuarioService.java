@@ -31,6 +31,7 @@ public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
 
     public Usuario salvarUsuario(Usuario usuario) {
+        usuario.setEmail(this.gerarEmail(usuario.getPrimeiroNome(), usuario.getUltimoNome()));
         return usuarioRepository.save(usuario);
     }
 
@@ -58,14 +59,14 @@ public class UsuarioService implements UserDetailsService {
         String primeiroNomeVerificado = primeiroNome.replaceAll(regex, "_");
         String ultimoNomeVerificado = ultimoNome.replaceAll(regex, "_");
         boolean primeiroEUltimoNomeInvalidos = primeiroNomeVerificado.contains("_")
-                                               || ultimoNomeVerificado.contains("_");
+                || ultimoNomeVerificado.contains("_");
         if (primeiroEUltimoNomeInvalidos) {
             throw new NomeInvalidoException("Primeiro ou último nome inválido!");
         }
     }
 
-    private void verificarCargo(Cargos cargo, TokenRegistro tokenRegistro){
-        if (!cargo.getNomeCargo().equals(tokenRegistro.getTokenCargo().getNome())){
+    private void verificarCargo(Cargos cargo, TokenRegistro tokenRegistro) {
+        if (!cargo.getNomeCargo().equals(tokenRegistro.getTokenCargo().getNome())) {
             throw new CargoIlegalException("Esse token não pode ser utilizado neste cargo!");
         }
     }
@@ -75,26 +76,44 @@ public class UsuarioService implements UserDetailsService {
         List<String> erros = new ArrayList<>(BindingResultUtils.extrairErrosDosCampos(bindingResult));
 
         try {
-            this.verificarSeEmailEstaEmUso(registroUsuarioDTO.getEmail());
-        } catch (EmailEmUsoException ex) {
-            erros.add(ex.getMessage());
-        }
-
-        try {
             this.verificarNome(registroUsuarioDTO.getPrimeiroNome(), registroUsuarioDTO.getUltimoNome());
         } catch (NomeInvalidoException ex) {
             erros.add(ex.getMessage());
         }
 
-        try{
+        try {
             this.verificarCargo(cargo, tokenRegistro);
-        }
-        catch(CargoIlegalException ex){
+        } catch (CargoIlegalException ex) {
             erros.add(ex.getMessage());
         }
 
         return erros;
 
+    }
+
+    public String gerarEmail(String primeiroNome, String ultimoNome) {
+        int num = 1;
+        String email = buildarEmail(primeiroNome, ultimoNome, num);
+
+        boolean emailEstaEmUso = true;
+
+        do {
+            try {
+                this.verificarSeEmailEstaEmUso(email);
+                emailEstaEmUso = false;
+            } catch (EmailEmUsoException ex) {
+                email = buildarEmail(primeiroNome, ultimoNome, num++);
+            }
+
+        } while (emailEstaEmUso);
+
+        return email;
+
+    }
+
+    private String buildarEmail(String primeiroNome, String ultimoNome, int num) {
+        String pattern = "%s.%s%d@fwauto.com";
+        return String.format(pattern, primeiroNome.toLowerCase(), ultimoNome.toLowerCase(), num);
     }
 
 

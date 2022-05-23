@@ -21,9 +21,6 @@ public class RegistroUsuarioDTO {
 	@NotBlank(message = "É necessário incluir o último nome!")
 	private String ultimoNome;
 
-	@NotBlank(message = "É necessário incluir o email!")
-	private String email;
-
 	@NotBlank(message = "É necessário incluir a senha!")
 	private String senha;
 

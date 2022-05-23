@@ -10,8 +10,8 @@ public class Administrador extends UsuarioGestor {
 
 	private static final long serialVersionUID = 1L;
 
-	public Administrador (String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
-		super(primeiroNome, ultimoNome, urlImagem, email, senha);
+	public Administrador (String primeiroNome, String ultimoNome, String urlImagem, String senha){
+		super(primeiroNome, ultimoNome, urlImagem, senha);
 	}
 
 

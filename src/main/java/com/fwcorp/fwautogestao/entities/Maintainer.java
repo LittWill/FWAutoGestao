@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 @Entity
 public class Maintainer extends UsuarioComum{
 
-    public Maintainer (TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String email, String senha){
-        super(tokenRegistro, primeiroNome, ultimoNome, urlImagem, email, senha);
+    public Maintainer (TokenRegistro tokenRegistro, String primeiroNome, String ultimoNome, String urlImagem, String senha){
+        super(tokenRegistro, primeiroNome, ultimoNome, urlImagem, senha);
     }
 
 }
