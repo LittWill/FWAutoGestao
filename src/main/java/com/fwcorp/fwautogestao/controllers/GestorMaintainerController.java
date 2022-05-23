@@ -8,6 +8,8 @@ import com.fwcorp.fwautogestao.services.TokenRegistroService;
 import com.fwcorp.fwautogestao.services.UsuarioService;
 import com.fwcorp.fwautogestao.util.GeradorRespostaServidor;
 import com.fwcorp.fwautogestao.util.RespostaServidor;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("gestormaintainer")
+@Api(tags = "Gestor Maintainer Endpoints")
 public class GestorMaintainerController {
 
     private final UsuarioService usuarioService;
 
     private final TokenRegistroService tokenRegistroService;
 
+    @ApiOperation(value = "Salva um novo Gestor Maintainer", tags = "Acesso Livre")
     @PostMapping
     public ResponseEntity<RespostaServidor> salvarGestorMaintainer(@RequestBody @Valid RegistroUsuarioDTO registroUsuarioDTO, BindingResult bindingResult){
 

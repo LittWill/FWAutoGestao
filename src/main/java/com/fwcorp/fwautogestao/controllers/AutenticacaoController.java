@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("auth")
-@Api(tags = "Autenticação")
+@Api(tags = "Autenticação Endpoints")
 public class AutenticacaoController {
 
 	private final AutenticacaoService autenticacaoService;
