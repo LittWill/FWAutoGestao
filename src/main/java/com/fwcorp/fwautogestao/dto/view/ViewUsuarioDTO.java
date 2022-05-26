@@ -9,6 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor @AllArgsConstructor
 public class ViewUsuarioDTO {
 
+	private String id;
+
 	private String primeiroNome;
 
 	private String ultimoNome;
